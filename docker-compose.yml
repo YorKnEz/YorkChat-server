@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    entrypoint: ['sh', '-c']
+    command: ['yarn start']
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - DB_USER=root
+      - DB_PASS=root
+  db:
+    image: postgres:13.0-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=yorkchat
+  pgadmin:
+    image: dpage/pgadmin4:2020-12-16-1
+    logging:
+      driver: none
+    ports:
+      - 8000:80
+    depends_on:
+      - db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=test@example.com
+      - PGADMIN_DEFAULT_PASSWORD=test1234
