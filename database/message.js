@@ -8,6 +8,10 @@ const Message = sequelize.define('Message', {
   content: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  mediaType: {
+    type: DataTypes.STRING,
+    defaultValue: null
   }
 }, {})
 

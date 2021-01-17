@@ -11,7 +11,12 @@ const Chatroom = sequelize.define('Chatroom', {
     defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
   },
   lastMessage: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    defaultValue: null
+  },
+  userCount: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    allowNull: false
   }
 }, {})
 
